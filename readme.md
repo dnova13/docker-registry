@@ -81,23 +81,58 @@ readme.ref.md 참조
 
 ### nginx 셋팅 방식
 
-nginx-auth-enabled 폴더 참조
+docker-registry-web/examples/nginx-auth-enabled 폴더 참조
 
-openssl req -new -newkey rsa:4096 -days 365 -subj "/CN=localhost" -nodes -x509 -keyout conf/registry-web/auth.key -out conf/registry/auth.cert
+### 개발용이 아닌 실제 서버 배포시 opnessl 설정
 
+-subj "/CN=3.39.6.193" , cnname 을 해당 서버 아이피 또는 도메인으로 변경한다.
+
+ex)
+
+```
 openssl req -new -newkey rsa:4096 -days 365 -subj "/CN=3.39.6.193" -nodes -x509 -keyout conf/registry-web/auth.key -out conf/registry/auth.cert
+```
 
-vi etc/docker/daemon.json
+### `Get "https://{ip주소}:5000/v2/": http: server gave HTTP response to HTTPS client` 로 에러날 경우
+
+-   리눅스인 경우
+    받는 쪽에 도커에서 etc/docker/daemon.json 에서 아래와 같이 입력
+    daemon.json가 만약 없다면 `vi etc/docker/daemon.json` 생성하여 입력 후 `systemctl restart docker` 도커 재시작
+
+    ```
+    {
+        "insecure-registries": [
+            {도커레지스트리 설치한 ip or 도메인}:5000"
+        ]
+    }
+    ```
+
+-   윈도우인경우 docker desktop 설정 -> 도커 엔진에서 입력 후, 도커 재시작
 
 ```
 {
     "insecure-registries": [
-        "3.39.6.193:5000", "3.39.6.193:8080"
+        {도커레지스트리 설치한 ip or 도메인}:5000"
     ]
 }
 ```
 
-sudo docker restart registry-srv registry-web
-docker login 3.39.6.193:5000 -u test -p 1q2w3e4r
+이렇게 설정했는데도 에러가 난다면 `sudo` 를 붙여 관리자 모드로 실행
 
-docker login 3.39.6.193:5000 -u admin -p 1q2w3e4r
+ex)
+
+```
+{
+    "insecure-registries": [
+        "3.39.6.193:5000",
+        "3.39.6.193:8080"
+    ]
+}
+
+```
+
+### 설정완료 후 컨테이너 재시작 명령어
+
+```
+sudo docker restart registry-srv registry-web
+```

@@ -1,0 +1,13 @@
+target
+out
+web-app/WEB-INF/tld
+
+*.ipr
+*.iml
+*.iws
+
+Dockerfile
+README.md
+docs
+examples
+.git/objects

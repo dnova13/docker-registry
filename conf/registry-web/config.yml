@@ -5,6 +5,8 @@ registry:
     name: localhost:5000
     # To allow image delete, should be false
     readonly: false
+    # trust_any_ssl 에서 ssl 무시하고 싶다면 true (default: false)
+    # trust_any_ssl: false
     auth:
         # Enable authentication
         enabled: true

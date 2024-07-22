@@ -7,7 +7,7 @@ services:
             - 8080:8080
         volumes:
             - ./conf/registry-web:/conf:ro
-            - ./db:/data
+            # - ./db:/data
         networks:
             - registry-net
         depends_on:
@@ -19,7 +19,7 @@ services:
             - 5000:5000
         volumes:
             - ./conf/registry:/etc/docker/registry:ro
-            - ./registry:/var/lib/registry
+            # - ./registry:/var/lib/registry
         networks:
             - registry-net
 

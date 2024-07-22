@@ -82,3 +82,22 @@ readme.ref.md 참조
 ### nginx 셋팅 방식
 
 nginx-auth-enabled 폴더 참조
+
+openssl req -new -newkey rsa:4096 -days 365 -subj "/CN=localhost" -nodes -x509 -keyout conf/registry-web/auth.key -out conf/registry/auth.cert
+
+openssl req -new -newkey rsa:4096 -days 365 -subj "/CN=3.39.6.193" -nodes -x509 -keyout conf/registry-web/auth.key -out conf/registry/auth.cert
+
+vi etc/docker/daemon.json
+
+```
+{
+    "insecure-registries": [
+        "3.39.6.193:5000", "3.39.6.193:8080"
+    ]
+}
+```
+
+sudo docker restart registry-srv registry-web
+docker login 3.39.6.193:5000 -u test -p 1q2w3e4r
+
+docker login 3.39.6.193:5000 -u admin -p 1q2w3e4r

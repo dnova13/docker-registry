@@ -26,3 +26,11 @@ It will run docker registry `localhost:5000` and web ui on `http://localhost:808
     docker push localhost:5000/hello-world:latest
     docker rmi localhost:5000/hello-world:latest
     docker run localhost:5000/hello-world:latest
+
+    docker login 3.39.6.193:5000
+
+    docker tag hello-world 3.39.6.193:5000/hello-world:latest
+    docker push 3.39.6.193:5000/hello-world:latest
+    docker rmi 3.39.6.193:5000/hello-world:latest
+    docker run 3.39.6.193:5000/hello-world:latest
+

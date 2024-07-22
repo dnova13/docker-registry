@@ -78,3 +78,7 @@ echo ${docker_pw} | docker login localhost:5000 --username ${ id } --password-st
 ### private 실행법
 
 readme.ref.md 참조
+
+### nginx 셋팅 방식
+
+nginx-auth-enabled 폴더 참조

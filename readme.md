@@ -67,3 +67,14 @@ openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -keyout conf/registry-w
     https://hub.docker.com/r/hyper/docker-registry-web/
     https://github.com/mkuchin/docker-registry-web/tree/master/examples
     ```
+
+### 도커 로그인 명령어
+
+```
+docker login localhost:5000 -u ${ docker_id} -p ${ docker_pw}
+echo ${docker_pw} | docker login localhost:5000 --username ${ id } --password-stdin
+```
+
+### private 실행법
+
+readme.ref.md 참조

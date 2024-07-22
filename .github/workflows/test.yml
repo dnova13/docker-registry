@@ -14,6 +14,7 @@ jobs:
                   sudo systemctl restart docker
 
                   docker login 3.39.6.193:5000 -u admin -p 1q2w3e4r
-                  docker pull nginx
-                  docker tag nginx 3.39.6.193:5000/nginx:latest
-                  docker push 3.39.6.193:5000/nginx:latest
+                  # docker pull nginx
+                  # docker tag nginx 3.39.6.193:5000/nginx:latest
+                  docker pull 3.39.6.193:5000/nginx:latest
+                  docker images

@@ -9,7 +9,7 @@ jobs:
         steps:
             - name: docker push
               run: |
-                  # github docker 셋팅 
+                  # github docker ssl 무시 주소 셋팅 
                   echo '{"insecure-registries": ["3.39.6.193:5000", "3.39.6.193:8080"]}' | sudo tee /etc/docker/daemon.json
                   sudo systemctl restart docker
 

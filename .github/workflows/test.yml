@@ -9,6 +9,9 @@ jobs:
         steps:
             - name: docker push
               run: |
+                  echo '{"insecure-registries": ["3.39.6.193:5000", "3.39.6.193:8080"]}' | sudo tee /etc/docker/daemon.json
+                  sudo systemctl restart docker
+
                   docker login 3.39.6.193:5000 -u admin -p 1q2w3e4r
                   docker pull hello-world
                   docker tag hello-world 3.39.6.193:5000/hello-world:latest
